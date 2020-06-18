@@ -1,11 +1,80 @@
-/* Aula inicial :D */
+
+/* soft reset do css */
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.titulos {
+  transform: scale(0.2) translateY(50vh);
+  opacity: 0;
+  animation: cubic-bezier(0.68, 1.28, 1, 1) 1s animacaoTitulo forwards;
+}
+
+@keyframes animacaoTitulo {
+  100% {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  }
+}
+
+/*link inicial background: https://cdn.brandfolder.io/EVFU9RD7/at/q86e1k-8tnmvc-1gipaz/Topography_-_Zoom_Background.jpg*/
 body {
-  background-image: url("https://cdn.brandfolder.io/EVFU9RD7/at/q86e1k-8tnmvc-1gipaz/Topography_-_Zoom_Background.jpg");
+  background-image: url("https://cdn.pixabay.com/photo/2020/04/19/08/17/watercolor-5062356_960_720.jpg");
   /* 100vh a imagem se ajustará ao tamanho da tela e o auto mantem a proporção do eixo horizontal */
-  back-ground-size: auto 100vh;
-  font-family: Arial;
+  background-size: auto 100vh;
+  background-repeat: no-repeat;
   height: 100vh;
+  font-family: 'Cutive Mono', monospace;
   color: whitesmoke;
+  font-size: 12px;
+}
+
+p {
+  font-family: 'Cutive Mono', monospace;
+  color: whitesmoke;
+  font-size: 15px;
+}
+
+/* breakpoint */
+/* se a tela tiver pelo menos 400px vai carregar estes estilos */
+@media (min-width: 400px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 600px) {
+  body {
+    background-attachment: fixed;
+    background-size: cover;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1200px) {
+  body {
+    font-size: 20px;
+  }
+}
+
+header {
+  height: 100vh;
+  display: flex;
+  /*só funcionam por causa do flex, alinham na horizontal e na vertical*/
+  justify-content: center;
+  align-items: center;
+}
+
+.menu {
+  background-color: white;
+  opacity: 0.8;
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  z-index: 1;
+  font-family: 'Muli', sans-serif;
 }
 
 .menu ul {
@@ -15,29 +84,186 @@ body {
   justify-content:space-around;
 }
 
-.menu {
-  background-color: white;
-}
-
 .menu li {
   list-style: none;
+  font-size: 1.3em;
+}
+
+.menu a {
+  /*por padrão o display do a é inline mas fica muito pequeno para o toque*/
+  display: block;
+  padding: 10px 20px;
+  color: #2a70a1;
 }
 
 a {
   text-decoration: none;
-  color: black;
+  color: #385179;
 }
 
-a:hover {
-  text-decoration: underline;
+.menu a:active,
+.menu a:hover {
+  text-shadow: 2px 2px 5px #385179;
+  text-decoration: none;
+  font-size: 1.1em;
+  transition: 1s;
+}
+
+.titulos a {
+  text-shadow: 2px 2px 3px #DAF7DC;
+  transition: .5s;
+}
+
+.titulos a:active,
+.titulos a:hover {
+  text-shadow: 5px 5px 5px #DAF7DC;
 }
 
 .site-subtitle,
 .site-title {
-  color: witesmoke;
   text-align: center;
+  font-family: 'Muli', sans-serif;
+}
+
+.site-title {
+  /* ficará 4 vezes o tamanho do body */
+  font-size: 4em;
+  color: #385179;
 }
 
 .site-subtitle {
   font-style: italic;
+  line-height: 1.5em;
+  color: whitesmoke;
 }
+
+.sobre h2,
+.projeto h2,
+.contato h2 {
+  font-family: 'Cultive Mono'
+}
+
+.flip-card {
+  perspective: 4000px;
+  height: 180px;
+  width: 300px;
+
+}
+
+.projetos {
+  background-color: #ff9550;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  padding: 30px;
+  justify-content: center;
+}
+
+.projetos img {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.projetos .grid {
+  display: grid;
+  gap: 3.5em;
+}
+
+@media (min-width: 560px) {
+  .porojetos .grid {
+    grid-template-columns: 240px 240px;
+  }
+}
+
+@media (min-width: 880px) {
+  .projetos .grid {
+    grid-template-columns: repeat(3, 260px);
+    align-content: center;
+    justify-content: center;
+    height: calc(100vh - 8em - 48px);
+  }
+}
+
+.projetos figure {
+  text-align: center;
+}
+
+.card {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1.7s;
+  /*height: 180px;
+  width: 1602px;*/
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flip-card:hover .card{
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: black;
+  height: 180px;
+  width: 300px;
+  transform: rotateY(180deg);
+}
+
+.img-projeto {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 500ms;
+}
+
+
+.contato {
+  font-size: 4em;
+  text-align: center;
+}
+
+.rodape a:active,
+.rodape a:hover,
+.contato a:active,
+.contato a:hover {
+  text-shadow: 2px 2px 5px #DAF7DC;
+  text-decoration: none;
+  transition: .9s;
+}
+
+footer#rodape {
+  clear: both;
+  border-top: 1px solid #385179;
+  font-family: 'Muli', sans-serif;
+  box-sizing: block;
+  background-color: black;
+  opacity: 0.5;
+}
+
+footer#rodape p {
+  text-align: center;
+  color: whitesmoke;
+}
+
+footer#rodape a {
+    color: whitesmoke;
+}
+
